@@ -1,0 +1,857 @@
+fileFormatVersion: 2
+guid: e93fffa0bb78f4bd0a5a90242acfdb27
+timeCreated: 1468806179
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ballBlack_01.png
+    21300002: ballBlack_02.png
+    21300004: ballBlack_03.png
+    21300006: ballBlack_04.png
+    21300008: ballBlack_05.png
+    21300010: ballBlack_06.png
+    21300012: ballBlack_07.png
+    21300014: ballBlack_08.png
+    21300016: ballBlack_09.png
+    21300018: ballBlack_10.png
+    21300020: ballBlue_01.png
+    21300022: ballBlue_02.png
+    21300024: ballBlue_03.png
+    21300026: ballBlue_04.png
+    21300028: ballBlue_05.png
+    21300030: ballBlue_06.png
+    21300032: ballBlue_07.png
+    21300034: ballBlue_08.png
+    21300036: ballBlue_09.png
+    21300038: ballBlue_10.png
+    21300040: ballGrey_01.png
+    21300042: ballGrey_02.png
+    21300044: ballGrey_03.png
+    21300046: ballGrey_04.png
+    21300048: ballGrey_05.png
+    21300050: ballGrey_06.png
+    21300052: ballGrey_07.png
+    21300054: ballGrey_08.png
+    21300056: ballGrey_09.png
+    21300058: ballGrey_10.png
+    21300060: ballYellow_01.png
+    21300062: ballYellow_02.png
+    21300064: ballYellow_03.png
+    21300066: ballYellow_04.png
+    21300068: ballYellow_05.png
+    21300070: ballYellow_06.png
+    21300072: ballYellow_07.png
+    21300074: ballYellow_08.png
+    21300076: ballYellow_09.png
+    21300078: ballYellow_10.png
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ballBlack_01.png
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 522
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballBlack_02.png
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 132
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballBlack_03.png
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 262
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballBlack_04.png
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 392
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballBlack_05.png
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 822
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballBlack_06.png
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 202
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballBlack_07.png
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballBlack_08.png
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 502
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    - name: ballBlack_09.png
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 652
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballBlack_10.png
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 802
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    - name: ballBlue_01.png
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 562
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballBlue_02.png
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 692
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballBlue_03.png
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 822
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballBlue_04.png
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 42
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballBlue_05.png
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 172
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballBlue_06.png
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 352
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballBlue_07.png
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballBlue_08.png
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 502
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    - name: ballBlue_09.png
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 802
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballBlue_10.png
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 652
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    - name: ballGrey_01.png
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 2
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballGrey_02.png
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 132
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballGrey_03.png
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 262
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballGrey_04.png
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 392
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballGrey_05.png
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 522
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballGrey_06.png
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 352
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballGrey_07.png
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 652
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballGrey_08.png
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 52
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    - name: ballGrey_09.png
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 802
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballGrey_10.png
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 202
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    - name: ballYellow_01.png
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 562
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballYellow_02.png
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 692
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballYellow_03.png
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 302
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballYellow_04.png
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 432
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -64, y: 57}
+        - {x: -64, y: -47}
+        - {x: -47, y: -64}
+        - {x: 40, y: -64}
+        - {x: 58, y: -60}
+        - {x: 64, y: -38}
+        - {x: 64, y: 36}
+        - {x: 41, y: 64}
+    - name: ballYellow_05.png
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 2
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 64}
+        - {x: -64, y: 39}
+        - {x: -64, y: -42}
+        - {x: -56, y: -64}
+        - {x: 31, y: -64}
+        - {x: 64, y: -37}
+        - {x: 64, y: 39}
+        - {x: 39, y: 64}
+    - name: ballYellow_06.png
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 502
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballYellow_07.png
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 652
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballYellow_08.png
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 802
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    - name: ballYellow_09.png
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 52
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 74}
+        - {x: -74, y: -43}
+        - {x: -66, y: -74}
+        - {x: 45, y: -74}
+        - {x: 74, y: -42}
+        - {x: 74, y: 45}
+        - {x: 66, y: 74}
+    - name: ballYellow_10.png
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 202
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 74}
+        - {x: -74, y: 70}
+        - {x: -74, y: -57}
+        - {x: -55, y: -74}
+        - {x: 38, y: -74}
+        - {x: 74, y: -60}
+        - {x: 74, y: 51}
+        - {x: 61, y: 74}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
