@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
-	public static float tileWidth = 2.76f;
-
-	public static int rowWidth = 6;
+	public enum TileState {
+		None,
+		Idle,
+		Falling
+	}
 
 	public enum Type {
 		None,
@@ -15,33 +17,97 @@ public class Tile : MonoBehaviour {
 		Heart,
 		MaxType
 	};
-		
-	public static List<Tile> allTiles = new List<Tile> ();
 
+	public static float tileWidth = 2.76f;
+	public static float yDelta = 0.25f;
+	public static float xDelta = 0.25f;
+
+	public static int rowWidth = 5;
+	public static float RenderScale = 0.75f;
+		
 	public List<Sprite> icons;
 	public List<Sprite> backgrounds;
 	public Type type;
 	public SpriteRenderer background;
 	public SpriteRenderer icon;
 
-	public static Tile CreateTile(Vector3 position) {
-		Tile tile = null;
+	private Tile leftNeighbor, rightNeighbor, topNeighbor, bottomNeighbor;
+
+	public static Tile CreateTile(Vector3 position, bool active = true) {
 		GameObject gameObject = Instantiate(Resources.Load("Prefabs/Tile")) as GameObject;
-		tile = gameObject.GetComponent<Tile> ();
+		Tile tile = gameObject.GetComponent<Tile> ();
 		Vector3 tilePosition = position;
 		tile.transform.position = tilePosition;
 		tile.type = ((Type)Random.Range(1, (int)Type.MaxType));
 		tile.icon.sprite = tile.icons[(int)tile.type];
+		tile.gameObject.transform.localScale *= RenderScale;
 
+		tile.ToggleActive (active);
 
-		if (tile != null) {
-//			tile.isInteractable = true;
-		}
-
-		allTiles.Add (tile);
 		return tile;
 	}
 
+	void OnMouseDown() {
+		Debug.Log (this.Neighbors ());
+	}
+
+//	void OnTriggerEnter2D(Collider2D collider) {
+//		GameObject o = collider.gameObject;
+//		if (o.transform.position.x < this.gameObject.transform.position.x) {
+//			this.leftNeighbor = o.GetComponent<Tile> ();
+//		} else if (o.transform.position.x > this.gameObject.transform.position.x) {
+//			this.rightNeighbor = o.GetComponent<Tile> ();
+//		} else if (o.transform.position.y < this.gameObject.transform.position.y) {
+//			this.bottomNeighbor = o.GetComponent<Tile> ();
+//		} else if (o.transform.position.y > this.gameObject.transform.position.y) {
+//			this.topNeighbor = o.GetComponent<Tile> ();
+//		}
+//	}
+		
+	void OnTriggerExit2D(Collider2D collider) {
+		GameObject o = collider.gameObject;
+		if (o.transform.position.x < this.gameObject.transform.position.x) {
+			this.leftNeighbor = null;
+		} else if (o.transform.position.x > this.gameObject.transform.position.x) {
+			this.rightNeighbor = null;
+		} else if (o.transform.position.y < this.gameObject.transform.position.y) {
+			this.bottomNeighbor = null;
+		} else if (o.transform.position.y > this.gameObject.transform.position.y) {
+			this.topNeighbor = null;
+		}
+	}
+
+	void OnTriggerStay2D(Collider2D collider) {
+		GameObject o = collider.gameObject;
+		if (o.transform.position.x < this.gameObject.transform.position.x) {
+			this.leftNeighbor = o.GetComponent<Tile> ();
+		} else if (o.transform.position.x > this.gameObject.transform.position.x) {
+			this.rightNeighbor = o.GetComponent<Tile> ();
+		} else if (o.transform.position.y < this.gameObject.transform.position.y) {
+			this.bottomNeighbor = o.GetComponent<Tile> ();
+		} else if (o.transform.position.y > this.gameObject.transform.position.y) {
+			this.topNeighbor = o.GetComponent<Tile> ();
+		}
+	}
+
+	public void ToggleActive(bool active) {
+		//this.gameObject.SetActive (active);
+	}
+
+	public List<Tile> MatchedNeighbors() {
+		List<Tile> matched = new List<Tile> ();
+		foreach (Tile tile in this.Neighbors()) {
+			if (tile != null && tile.type == this.type) {
+				matched.Add (tile);
+			}
+		}
+
+		return matched;
+	}
+
+	public List<Tile> Neighbors() {
+		return new List<Tile> () { this.leftNeighbor, this.rightNeighbor, this.topNeighbor, this.bottomNeighbor };
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -51,90 +117,5 @@ public class Tile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-
-	public static Tile firstTile;
-	public static Tile secondTile;
-	void OnMouseDown() {
-		if (firstTile == null) {
-			firstTile = this;
-		} else if (secondTile == null && this.isHorizontal (firstTile)) {
-			secondTile = this;
-
-			Vector3 firstPosition = firstTile.gameObject.transform.position;
-			Vector3 secondPosition = secondTile.gameObject.transform.position;
-			firstTile.gameObject.transform.position = secondPosition;
-			secondTile.gameObject.transform.position = firstPosition;
-
-			int firstIndex = allTiles.IndexOf (firstTile);
-			int secondIndex = allTiles.IndexOf (secondTile);
-			allTiles [firstIndex] = secondTile;
-			allTiles [secondIndex] = firstTile;
-
-//			firstTile = null;
-			secondTile = null;
-
-			// swap occurred
-			BoardManager.Instance.SwapPerformed();
-		} else if (this == firstTile) {
-			firstTile = null;
-		} else {
-			firstTile = this;
-		}
-
-		for (int i = 0; i < allTiles.Count; i++) {
-			allTiles [i].background.sprite = backgrounds [allTiles [i] == firstTile ? 1 : 0];
-		}
-	}
-
-	public bool isHorizontal(Tile otherTile) {
-		int myIndex = allTiles.IndexOf (this);
-		int x = myIndex % rowWidth;
-		int y = myIndex / rowWidth;
-		Debug.LogFormat ("First: {0}, {1}", x, y);
-		int otherIndex = allTiles.IndexOf (otherTile);
-		int otherX = otherIndex % rowWidth;
-		int otherY = otherIndex / rowWidth;
-		Debug.LogFormat ("Second: {0}, {1}", otherX, otherY);
-
-		Tile leftNeighbor = null;
-		Tile rightNeighbor = null;
-		if (x - 1 >= 0) {
-			leftNeighbor = allTiles [myIndex - 1];
-		}
-		if (x + 1 < rowWidth) {
-			rightNeighbor = allTiles [myIndex + 1];
-		}
-
-		return leftNeighbor == otherTile || rightNeighbor == otherTile;
-	}
-
-	public bool isAdjacent(Tile otherTile) {
-		int myIndex = allTiles.IndexOf (this);
-		int x = myIndex % rowWidth;
-		int y = myIndex / rowWidth;
-		Debug.LogFormat ("First: {0}, {1}", x, y);
-		int otherIndex = allTiles.IndexOf (otherTile);
-		int otherX = otherIndex % rowWidth;
-		int otherY = otherIndex / rowWidth;
-		Debug.LogFormat ("Second: {0}, {1}", otherX, otherY);
-
-		Tile topNeighbor = null;
-		Tile bottomNeighbor = null;
-		Tile leftNeighbor = null;
-		Tile rightNeighbor = null;
-		if (x - 1 >= 0) {
-			leftNeighbor = allTiles [myIndex - 1];
-		}
-		if (x + 1 < rowWidth) {
-			rightNeighbor = allTiles [myIndex + 1];
-		}
-		if ((y + 1) * rowWidth < allTiles.Count) {
-			topNeighbor = allTiles [myIndex + rowWidth];
-		}
-		if ((y - 1) * rowWidth >= 0) {
-			bottomNeighbor = allTiles [myIndex - rowWidth];
-		}
-		return leftNeighbor == otherTile || rightNeighbor == otherTile || topNeighbor == otherTile || bottomNeighbor == otherTile;
 	}
 }
