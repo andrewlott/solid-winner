@@ -4,125 +4,94 @@ using System.Collections.Generic;
 public class BoardManager : Singleton<BoardManager> {
 	protected BoardManager () {}
 
-	public static int BoardWidth = 5;
-	public static Vector2 BoardCenter = new Vector2 (0.0f, -3.34f);
+	[SerializeField]
+	private RectTransform boardTransform;
+	[SerializeField]
+	private GameObject slotPrefab;
 
-	public List<Tile> tiles;
+	[SerializeField]
+	private int boardWidth = 6;
+	[SerializeField]
+	private int maxBoardHeight = 9;
+	[SerializeField] [Range(1, 100)]
+	private int speed = 10;
 
-	// Dragging n shit
-	public float dragSpeed = 1;
-	private Vector3 dragOrigin;
-	private Vector3 lastDragPoint;
+	private List<TileRow> slots = new List<TileRow> ();
+	private float lastUpdateTime;
+	public float movementIncrement = 0.005f;
 
-	public float tileMoveRate = 0.05f;
-	public float tileMoveFrequency = 0.5f;
-	public float lastMoveTime;
-	public float lastRowCreateTime = 0;
+	private int totalMovements = 0;
 
 	void Awake() {
 		DontDestroyOnLoad (this.gameObject);
 		Initialize ();
 	}
 
-	void Start () { }
+	private void Initialize() {
+		this.Reset ();
+		this.CreateInitialBoard ();
+	}
+
+	private void Reset() {
+	}
+
+	private int CalculateM() {
+		return (int)(this.boardTransform.rect.height / movementIncrement);
+	}
+
+	private void CreateInitialBoard() {
+		this.slots.Clear ();
+		float increment = this.boardTransform.rect.width / boardWidth;
+
+		for (int i = 0; i < 12; i++) {
+			TileRow p = TileRow.CreateTileRow (this.boardTransform);
+			p.UpdateRowPosition (this.totalMovements, this.CalculateM ());
+//			GameObject p = new GameObject ();
+//			p.transform.position = new Vector3 (0.0f, this.boardTransform.rect.y - this.boardTransform.rect.height / 2 + i * increment + increment / 2, 0.0f);
+			for (int j = 0; j < this.boardWidth; j++) {
+				GameObject g = Instantiate (this.slotPrefab);
+				p.AddTileAtPosition (j, g);
+//				g.transform.parent = p.transform;
+//				g.transform.localPosition = new Vector3 (this.boardTransform.rect.xMin + j * increment + increment / 2, 0.0f, 0.0f);
+			}
+			this.slots.Add (p);
+		}
+	}
 
 	void Update() {
-		float scroll = Input.GetAxis("Mouse ScrollWheel");
-		Camera.main.orthographicSize += scroll;
+		if (Time.time > this.lastUpdateTime + 1.0f / this.speed) {
+			this.lastUpdateTime = Time.time;
+			this.totalMovements = (this.totalMovements + 1) % this.CalculateM();
 
-		HandleDrag ();
-	}
-
-	void FixedUpdate() {
-		// Movement
-		float now = Time.time;
-		HandleTriggers (now);
-
-		if (now - this.lastMoveTime >= tileMoveFrequency) {
-			this.lastMoveTime = now;
-			Vector3 displacement = new Vector3 (0.0f, tileMoveRate, 0.0f);
-			this.ApplyToTiles ((Tile tile) => {
-				tile.transform.position += displacement;
-			});
-		}
-
-
-		HandleMatches ();
-	}
-
-	private void HandleDrag() {
-		if (Input.GetMouseButtonDown(0))
-		{
-			dragOrigin = Input.mousePosition;
-			lastDragPoint = dragOrigin;
-			return;
-		}
-
-		if (!Input.GetMouseButton(0)) return;
-
-		Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - lastDragPoint);
-		Vector3 move = Quaternion.Euler(0, 45, 0) * new Vector3(pos.x * dragSpeed, 0, pos.y * dragSpeed);
-		transform.Translate(-move, Space.World);  
-	}
-
-	private void Initialize() {
-		CreateInitialBoard ();
-		this.lastMoveTime = Time.time;
-	}
-
-	private float XPositionForColumn(int columnIndex) {
-		return BoardCenter.x + (Tile.tileWidth + Tile.xDelta) * Tile.RenderScale * (columnIndex - (BoardWidth / 2));
-	}
-
-	private float YPositionForRow(int rowIndex) {
-		return BoardCenter.y + (Tile.tileWidth + Tile.yDelta) * Tile.RenderScale * (rowIndex - (BoardWidth / 2));
-	}
-
-	public void CreateInitialBoard() {
-		for (int i = -2; i < BoardWidth; i++) {
-			this.CreateTileRow (i);
-		}
-	}
-
-	private void CreateTileRow(int index) {
-		for (int j = 0; j < BoardWidth; j++) {
-			Vector3 position = new Vector3 (this.XPositionForColumn(j), this.YPositionForRow(index), 0.0f);
-			this.tiles.Add (Tile.CreateTile (position, index >= 0));
-		}
-	}
-
-	private void HandleTriggers(float now) {
-		float diff = now - this.lastRowCreateTime;
-		if (this.tileMoveRate * (now - this.lastRowCreateTime) / this.tileMoveFrequency >= (Tile.tileWidth + Tile.yDelta) * Tile.RenderScale) {
-			Debug.Log (this.tileMoveRate * (now - this.lastRowCreateTime) / this.tileMoveFrequency);
-			Debug.Log ((Tile.tileWidth + Tile.yDelta) * Tile.RenderScale);
-			this.lastRowCreateTime = now;
-			this.ApplyToTiles ((Tile tile) => {
-				tile.ToggleActive(true);
-			});
-			this.CreateTileRow (-2);
-		}
-	}
-
-	private void HandleMatches() {
-		HashSet<Tile> matchedTiles = new HashSet<Tile> ();
-		foreach (Tile tile in this.tiles) {
-			List<Tile> matchedNeighbors = tile.MatchedNeighbors ();
-			foreach (Tile matchedTile in matchedNeighbors) {
-				matchedTiles.Add (matchedTile);
+			foreach (var row in this.slots) {
+				row.UpdateRowPosition (this.totalMovements, this.CalculateM ());
+//				row.gameObject.transform.position += new Vector3(0.0f, movementIncrement, 0.0f);
 			}
 		}
 
-		foreach(Tile tile in matchedTiles) {
-//			this.tiles.Remove (tile);
-			// falling
-		}
-	}
 
-	public void ApplyToTiles(System.Action<Tile> actionToApply) {
-		foreach (Tile tile in this.tiles) {
-			actionToApply (tile);
-		}
-	}
+//		float increment = this.boardTransform.rect.width / boardWidth;
+//
+//		for (int i = this.slots.Count - 1; i >= 0; i--) {
+//			TileRow row = this.slots [i];
+//			if (row.transform.position.y + increment / 2 >= 0.5f * this.boardTransform.rect.height + this.boardTransform.rect.y + increment * 2) {
+//				GameObject.Destroy (row);
+//				this.slots.RemoveAt (i);
+//
+//				Tile p = new GameObject ();
+//
+//				p.transform.position = new Vector3 (0.0f, this.boardTransform.rect.y - this.boardTransform.rect.height / 2 + increment / 2, 0.0f);
+//				for (int j = 0; j < this.boardWidth; j++) {
+//					GameObject g = Instantiate (this.slotPrefab);
+//					g.transform.parent = p.transform;
+//					g.transform.localPosition = new Vector3 (this.boardTransform.rect.xMin + j * increment + increment / 2, 0.0f, 0.0f);
+//				}
+//				this.slots.Insert (0, p);
+//			}
+//		}
 
+		// need to use math to calculate row heights given time
+		// keep track of number of bumps, then position is some formula based on start time / position and mod 
+		// 
+	}
 }
