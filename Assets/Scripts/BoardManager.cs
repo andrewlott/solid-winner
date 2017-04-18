@@ -5,7 +5,9 @@ public class BoardManager : Singleton<BoardManager> {
 	protected BoardManager () {}
 
 	[SerializeField]
-	private RectTransform boardTransform;
+	public RectTransform boardTransform;
+	[SerializeField]
+	public RectTransform visibleBoardTransform;
 	[SerializeField]
 	private GameObject slotPrefab;
 
@@ -42,18 +44,14 @@ public class BoardManager : Singleton<BoardManager> {
 	private void CreateInitialBoard() {
 		this.slots.Clear ();
 		float increment = this.boardTransform.rect.width / boardWidth;
-
-		for (int i = 0; i < 12; i++) {
-			TileRow p = TileRow.CreateTileRow (this.boardTransform);
+		int rowCount = (int)(this.boardTransform.rect.height / increment);
+		for (int i = 0; i < rowCount; i++) {
+			TileRow p = TileRow.CreateTileRow ();
 			p.UpdateRowPosition (this.totalMovements, this.CalculateM ());
-//			GameObject p = new GameObject ();
-//			p.transform.position = new Vector3 (0.0f, this.boardTransform.rect.y - this.boardTransform.rect.height / 2 + i * increment + increment / 2, 0.0f);
-			for (int j = 0; j < this.boardWidth; j++) {
-				GameObject g = Instantiate (this.slotPrefab);
-				p.AddTileAtPosition (j, g);
-//				g.transform.parent = p.transform;
-//				g.transform.localPosition = new Vector3 (this.boardTransform.rect.xMin + j * increment + increment / 2, 0.0f, 0.0f);
-			}
+//			for (int j = 0; j < this.boardWidth; j++) {
+//				GameObject g = Instantiate (this.slotPrefab);
+//				p.AddTileAtPosition (j, g);
+//			}
 			this.slots.Add (p);
 		}
 	}
@@ -65,33 +63,7 @@ public class BoardManager : Singleton<BoardManager> {
 
 			foreach (var row in this.slots) {
 				row.UpdateRowPosition (this.totalMovements, this.CalculateM ());
-//				row.gameObject.transform.position += new Vector3(0.0f, movementIncrement, 0.0f);
 			}
 		}
-
-
-//		float increment = this.boardTransform.rect.width / boardWidth;
-//
-//		for (int i = this.slots.Count - 1; i >= 0; i--) {
-//			TileRow row = this.slots [i];
-//			if (row.transform.position.y + increment / 2 >= 0.5f * this.boardTransform.rect.height + this.boardTransform.rect.y + increment * 2) {
-//				GameObject.Destroy (row);
-//				this.slots.RemoveAt (i);
-//
-//				Tile p = new GameObject ();
-//
-//				p.transform.position = new Vector3 (0.0f, this.boardTransform.rect.y - this.boardTransform.rect.height / 2 + increment / 2, 0.0f);
-//				for (int j = 0; j < this.boardWidth; j++) {
-//					GameObject g = Instantiate (this.slotPrefab);
-//					g.transform.parent = p.transform;
-//					g.transform.localPosition = new Vector3 (this.boardTransform.rect.xMin + j * increment + increment / 2, 0.0f, 0.0f);
-//				}
-//				this.slots.Insert (0, p);
-//			}
-//		}
-
-		// need to use math to calculate row heights given time
-		// keep track of number of bumps, then position is some formula based on start time / position and mod 
-		// 
 	}
 }
