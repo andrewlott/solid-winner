@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
@@ -12,13 +13,19 @@ public class Tile : MonoBehaviour {
 		MaxType
 	};
 
+	public static Tile selectedTile;
+
+	public TileRow myRow;
+
+	private static float swapDuration = 0.1f;
+
 	[SerializeField]
 	private List<Sprite> icons;
 	[SerializeField]
 	private SpriteRenderer icon;
 
 	private Type type;
-
+	private bool isMoving;
 
 	public static Tile CreateTile() {
 		GameObject gameObject = Instantiate(Resources.Load("Prefabs/Tile")) as GameObject;
@@ -29,8 +36,56 @@ public class Tile : MonoBehaviour {
 		return tile;
 	}
 
-	void OnMouseDown() {
-		Debug.Log (this.type);
+	public static void Swap(Tile a, Tile b) {
+		a.StartCoroutine(a.MoveToPosition(b.myRow, b.myRow.IndexForTile(b)));
+		b.StartCoroutine(b.MoveToPosition(a.myRow, a.myRow.IndexForTile(a)));
+	}
+
+	public List<Tile> Neighbors() {
+		List<Tile> neighbors = new List<Tile> ();
+		int index = this.myRow.IndexForTile (this);
+		if (index > 0) {
+			neighbors.Add(this.myRow.TileAtIndex(index - 1));
+		}
+		if (index < TileRow.capacity - 1) {
+			neighbors.Add(this.myRow.TileAtIndex(index + 1));
+		}
+		TileRow aboveRow = BoardManager.Instance.TileRowAboveTileRow (this.myRow);
+		Tile aboveTile = aboveRow.TileAtIndex (index);
+		if (aboveTile != null) {
+			neighbors.Add (aboveTile);
+		}
+		TileRow belowRow = BoardManager.Instance.TileRowBelowTileRow (this.myRow);
+		Tile belowTile = belowRow.TileAtIndex (index);
+		if (belowTile != null) {
+			neighbors.Add (belowTile);
+		}
+
+		return neighbors;
+	}
+
+	private IEnumerator MoveToPosition(TileRow targetRow, int tileIndex) {
+		float elapsedTime = 0;
+		Vector3 startingPosition = this.transform.position;
+		while (elapsedTime < swapDuration) {
+			Vector3 target = new Vector3 (TileRow.TileXPositionForIndex(tileIndex), targetRow.transform.position.y, targetRow.transform.position.z);
+			this.transform.position = Vector3.Lerp (startingPosition, target, (elapsedTime / swapDuration));
+			elapsedTime += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+		targetRow.AddTileAtPosition (tileIndex, this);
+	}
+
+	void OnMouseOver() {
+		if (Tile.selectedTile != this) {
+			Tile.selectedTile = this;
+		}
+	}
+
+	void OnMouseExit() {
+		if (Tile.selectedTile == this) {
+			Tile.selectedTile = null;
+		}
 	}
 
 	// Use this for initialization

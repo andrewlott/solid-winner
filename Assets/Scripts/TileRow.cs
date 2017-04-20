@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 
 public class TileRow : MonoBehaviour {
-	private static int capacity = 6;
+	public static int capacity = 6;
 	private static List<TileRow> tileRows = new List<TileRow> ();
 
-	private int index;
+	public int index;
 	private float width;
 	private float height;
 	private Tile[] tiles = new Tile[capacity];
@@ -21,13 +21,32 @@ public class TileRow : MonoBehaviour {
 
 	public void AddTileAtPosition(int index, Tile tile) {
 		tile.gameObject.transform.parent = this.transform;
-		tile.gameObject.transform.localPosition = new Vector3 (this.TileXPositionForIndex(index), 0.0f, 0.0f);
+		tile.gameObject.transform.localPosition = new Vector3 (TileXPositionForIndex(index), 0.0f, 0.0f);
 		this.tiles [index] = tile;
+		tile.myRow = this;
 	}
 
-	public float TileXPositionForIndex(int index) {
+	public static float TileXPositionForIndex(int index) {
 		float increment = BoardManager.Instance.boardTransform.rect.width / capacity;
 		return BoardManager.Instance.boardTransform.rect.xMin + index * increment + increment / 2;
+	}
+
+	public int IndexForTile(Tile t) {
+		for (int i = 0; i < this.tiles.Length; i++) {
+			if (this.tiles [i] == t) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	public Tile TileAtIndex(int index) {
+		if (index < 0 || index >= this.tiles.Length) {
+			return null;
+		}
+
+		return this.tiles [index];
 	}
 
 	public void UpdateRowPosition(int n, int m) {

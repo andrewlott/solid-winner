@@ -21,12 +21,26 @@ public class BoardManager : Singleton<BoardManager> {
 	private List<TileRow> slots = new List<TileRow> ();
 	private float lastUpdateTime;
 	public float movementIncrement = 0.005f;
+	public int rowCount;
 
 	private int totalMovements = 0;
+
+	private Tile swapTile1;
+	private Tile swapTile2;
 
 	void Awake() {
 		DontDestroyOnLoad (this.gameObject);
 		Initialize ();
+	}
+
+	public TileRow TileRowAboveTileRow(TileRow row) {
+		int index = (row.index + BoardManager.Instance.rowCount + 1) % BoardManager.Instance.rowCount;
+		return this.slots [index];
+	}
+
+	public TileRow TileRowBelowTileRow(TileRow row) {
+		int index = (row.index + BoardManager.Instance.rowCount - 1) % BoardManager.Instance.rowCount;
+		return this.slots [index];
 	}
 
 	private void Initialize() {
@@ -43,9 +57,11 @@ public class BoardManager : Singleton<BoardManager> {
 
 	private void CreateInitialBoard() {
 		this.slots.Clear ();
+
 		float increment = this.boardTransform.rect.width / boardWidth;
-		int rowCount = (int)(this.boardTransform.rect.height / increment);
-		for (int i = 0; i < rowCount; i++) {
+		this.rowCount = (int)(this.boardTransform.rect.height / increment);
+
+		for (int i = 0; i < this.rowCount; i++) {
 			TileRow p = TileRow.CreateTileRow ();
 			p.UpdateRowPosition (this.totalMovements, this.CalculateM ());
 //			for (int j = 0; j < this.boardWidth; j++) {
@@ -65,5 +81,28 @@ public class BoardManager : Singleton<BoardManager> {
 				row.UpdateRowPosition (this.totalMovements, this.CalculateM ());
 			}
 		}
+
+		if (Input.GetMouseButtonDown(0)) {
+			this.swapTile1 = Tile.selectedTile;
+		} else if (Input.GetMouseButtonUp(0)) {
+			this.SwapTiles (this.swapTile1, Tile.selectedTile);
+		}
+	}
+
+	private void SwapTiles(Tile a, Tile b) {
+		if (a == null || b == null || a == b) {
+			return;
+		}
+
+		// check if neighbors
+		if (!a.Neighbors ().Contains (b)) {
+			return;
+		}
+
+		// swap
+		Tile.Swap(a, b);
+
+		this.swapTile1 = null;
+		this.swapTile2 = null;
 	}
 }
