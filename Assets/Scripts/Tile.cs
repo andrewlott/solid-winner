@@ -43,13 +43,31 @@ public class Tile : MonoBehaviour {
 
 	public List<Tile> Neighbors() {
 		List<Tile> neighbors = new List<Tile> ();
+		neighbors.AddRange (this.HorizontalNeighbors());
+		neighbors.AddRange (this.VerticalNeighbors());
+		return neighbors;
+	}
+
+	public Type MyType() {
+		return this.type;
+	}
+
+	public List<Tile> HorizontalNeighbors() {
+		List<Tile> neighbors = new List<Tile> ();
 		int index = this.myRow.IndexForTile (this);
-		if (index > 0) {
+		if (index > 0 && this.myRow.TileAtIndex(index - 1) != null) {
 			neighbors.Add(this.myRow.TileAtIndex(index - 1));
 		}
-		if (index < TileRow.capacity - 1) {
+		if (index < TileRow.capacity - 1 && this.myRow.TileAtIndex(index + 1) != null) {
 			neighbors.Add(this.myRow.TileAtIndex(index + 1));
 		}
+
+		return neighbors;
+	}
+
+	public List<Tile> VerticalNeighbors() {
+		List<Tile> neighbors = new List<Tile> ();
+		int index = this.myRow.IndexForTile (this);
 		TileRow aboveRow = BoardManager.Instance.TileRowAboveTileRow (this.myRow);
 		Tile aboveTile = aboveRow.TileAtIndex (index);
 		if (aboveTile != null) {

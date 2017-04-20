@@ -73,6 +73,14 @@ public class BoardManager : Singleton<BoardManager> {
 	}
 
 	void Update() {
+		this.UpdateRows ();
+
+		this.HandleMatches ();
+
+		this.HandleTouches ();
+	}
+
+	private void UpdateRows() {
 		if (Time.time > this.lastUpdateTime + 1.0f / this.speed) {
 			this.lastUpdateTime = Time.time;
 			this.totalMovements = (this.totalMovements + 1) % this.CalculateM();
@@ -81,11 +89,62 @@ public class BoardManager : Singleton<BoardManager> {
 				row.UpdateRowPosition (this.totalMovements, this.CalculateM ());
 			}
 		}
+	}
 
+	private void HandleTouches() {
 		if (Input.GetMouseButtonDown(0)) {
 			this.swapTile1 = Tile.selectedTile;
 		} else if (Input.GetMouseButtonUp(0)) {
 			this.SwapTiles (this.swapTile1, Tile.selectedTile);
+		}
+	}
+
+	private void HandleMatches() {
+		HashSet<Tile> removalTiles = new HashSet<Tile> ();
+		foreach (TileRow row in this.slots) {
+			foreach (Tile tile in row.AllTiles()) {
+				List<Tile> verticalNeighbors = tile.VerticalNeighbors ();
+				bool hasMatch = true;
+
+				if (verticalNeighbors.Count >= 2) {
+					foreach (Tile neighbor in verticalNeighbors) {
+						if (tile.MyType () != neighbor.MyType ()) {
+							hasMatch = false;
+						}
+					}
+
+					if (hasMatch) {
+						removalTiles.Add (tile);
+						foreach (Tile neighbor in verticalNeighbors) {
+							removalTiles.Add (neighbor);
+						}
+					}
+
+				}
+
+				List<Tile> horizontalNeighbors = tile.HorizontalNeighbors ();
+				if (horizontalNeighbors.Count >= 2) {
+					hasMatch = true;
+					foreach (Tile neighbor in horizontalNeighbors) {
+						if (tile.MyType () != neighbor.MyType ()) {
+							hasMatch = false;
+						}
+					}
+
+					if (hasMatch) {
+						removalTiles.Add (tile);
+						foreach (Tile neighbor in horizontalNeighbors) {
+							removalTiles.Add (neighbor);
+						}
+					}
+				}
+			}
+		}
+
+		foreach (Tile tile in removalTiles) {
+			tile.myRow.RemoveTile (tile);
+			tile.gameObject.SetActive (false);
+			GameObject.Destroy(tile.gameObject);
 		}
 	}
 

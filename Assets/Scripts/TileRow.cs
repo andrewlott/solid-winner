@@ -26,6 +26,34 @@ public class TileRow : MonoBehaviour {
 		tile.myRow = this;
 	}
 
+	public void RemoveTile(Tile t) {
+		int index = this.IndexForTile (t);
+		this.RemoveTileAtPosition (index);
+	}
+
+	public void RemoveTileAtPosition(int index) {
+		Tile tile = this.TileAtIndex (index); // lol reduntant
+		if (tile == null) {
+			return;
+		}
+
+		this.tiles [index] = null;
+		tile.myRow = null;
+	}
+
+	public List<Tile> AllTiles() {
+		List<Tile> tilesList = new List<Tile> ();
+		for (int i = 0; i < this.tiles.Length; i++) {
+			Tile t = this.tiles [i];
+			if (t == null) {
+				continue;
+			}
+
+			tilesList.Add (t);
+		}
+		return tilesList;
+	}
+
 	public static float TileXPositionForIndex(int index) {
 		float increment = BoardManager.Instance.boardTransform.rect.width / capacity;
 		return BoardManager.Instance.boardTransform.rect.xMin + index * increment + increment / 2;
@@ -92,6 +120,12 @@ public class TileRow : MonoBehaviour {
 
 	public void Fill() {
 		for (int i = 0; i < capacity; i++) {
+			Tile old = this.tiles [i];
+			if (old != null) {
+				this.RemoveTile (old);
+				old.gameObject.SetActive (false);
+				GameObject.Destroy (old.gameObject);
+			}
 			Tile tile = Tile.CreateTile ();
 			this.AddTileAtPosition (i, tile);
 		}
