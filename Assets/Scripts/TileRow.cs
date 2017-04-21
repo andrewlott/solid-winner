@@ -119,11 +119,13 @@ public class TileRow : MonoBehaviour {
 	}
 
 	public void Fill() {
+		this.gameObject.transform.DetachChildren ();
 		for (int i = 0; i < capacity; i++) {
 			Tile old = this.tiles [i];
 			if (old != null) {
 				this.RemoveTile (old);
 				old.gameObject.SetActive (false);
+//				old.Clear ();
 				GameObject.Destroy (old.gameObject);
 			}
 			Tile tile = Tile.CreateTile ();

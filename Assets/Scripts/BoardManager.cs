@@ -76,6 +76,7 @@ public class BoardManager : Singleton<BoardManager> {
 		this.UpdateRows ();
 
 		this.HandleMatches ();
+		this.HandleFalling ();
 
 		this.HandleTouches ();
 	}
@@ -103,11 +104,18 @@ public class BoardManager : Singleton<BoardManager> {
 		HashSet<Tile> removalTiles = new HashSet<Tile> ();
 		foreach (TileRow row in this.slots) {
 			foreach (Tile tile in row.AllTiles()) {
+				if (tile.isCleared || tile.isMoving) {
+					continue;
+				}
+
 				List<Tile> verticalNeighbors = tile.VerticalNeighbors ();
 				bool hasMatch = true;
 
 				if (verticalNeighbors.Count >= 2) {
 					foreach (Tile neighbor in verticalNeighbors) {
+						if (neighbor.isCleared || neighbor.isMoving) {
+							hasMatch = false;
+						}
 						if (tile.MyType () != neighbor.MyType ()) {
 							hasMatch = false;
 						}
@@ -126,6 +134,9 @@ public class BoardManager : Singleton<BoardManager> {
 				if (horizontalNeighbors.Count >= 2) {
 					hasMatch = true;
 					foreach (Tile neighbor in horizontalNeighbors) {
+						if (neighbor.isCleared || neighbor.isMoving) {
+							hasMatch = false;
+						}
 						if (tile.MyType () != neighbor.MyType ()) {
 							hasMatch = false;
 						}
@@ -142,14 +153,25 @@ public class BoardManager : Singleton<BoardManager> {
 		}
 
 		foreach (Tile tile in removalTiles) {
-			tile.myRow.RemoveTile (tile);
-			tile.gameObject.SetActive (false);
-			GameObject.Destroy(tile.gameObject);
+//			tile.myRow.RemoveTile (tile);
+			tile.Clear();
+//			GameObject.Destroy(tile.gameObject);
+			// for falling swap with inactive tile??? might have flaw / inconsistency
 		}
+
+
+	}
+
+	private void HandleFalling() {
+
 	}
 
 	private void SwapTiles(Tile a, Tile b) {
 		if (a == null || b == null || a == b) {
+			return;
+		}
+
+		if (a.isMoving || b.isMoving) {
 			return;
 		}
 
