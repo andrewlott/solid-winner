@@ -2,7 +2,14 @@
 using MonsterLove.StateMachine;
 
 public class GameManager : Singleton<GameManager> {
-	protected GameManager () {}
+
+	public SpriteRenderer backgroundHUD;
+	public SpriteRenderer backgroundBoard;
+
+	private static string BackgroundPath = "FeralPixel/Game Screen/Backgrounds/Game_Background_{0}";
+	private static string BackgroundHUDName = "Game_Background_{0}_HUD";
+	private static string BackgroundBoardName = "Game_Background_{0}_Board";
+
 
 	public enum GameState {
 		None,
@@ -20,9 +27,44 @@ public class GameManager : Singleton<GameManager> {
 		stateMachine = StateMachine<GameState>.Initialize (this);
 	}
 
+	void OnEnable() {
+		Setup();
+	}
+
 	void None_Enter() {
 		// should not be here
 	}
+
+
+	#region Setup 
+	public void Setup() {
+		int characterId = PlayerPrefs.GetInt("selectedCharacter");
+		if (characterId <= 0) {
+			return;
+		}
+
+		string backgroundPath = string.Format(BackgroundPath, characterId);
+		Sprite[] backgroundSprites = Resources.LoadAll<Sprite>(backgroundPath);
+		backgroundHUD.sprite = FindSpriteInSpriteSheetByName(backgroundSprites, string.Format(BackgroundHUDName, characterId));
+		backgroundBoard.sprite = FindSpriteInSpriteSheetByName(backgroundSprites, string.Format(BackgroundBoardName, characterId));
+	}
+
+	private Sprite FindSpriteInSpriteSheetByName(Sprite[] sheet, string name) {
+		foreach(Sprite s in sheet) {
+			if (s.name == name) {
+				return s;
+			}
+		}
+
+		return null;
+	}
+
+	#endregion
+
+
+	#region Button Input
+
+	#endregion
 }
 
 // all tiles on update move up at a certain rate

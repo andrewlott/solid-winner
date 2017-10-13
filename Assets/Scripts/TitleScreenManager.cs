@@ -23,14 +23,12 @@ public class TitleScreenManager : Singleton<TitleScreenManager> {
 		
 	}
 
-	void OnMouseDown() {
-		this.OnTestButtonClick ();
+
+	#region Button Input
+
+	public void VersusPressed() {
+		ScreenManager.Instance.MoveRight();
 	}
 
-	public void OnTestButtonClick() {
-		Debug.Log ("TestButtonClicked!");
-		// transition to next screen or show menu
-		SelectionManager.Instance.FadeInSelection();
-		this.titleScreen.SetActive (false);
-	}
+	#endregion
 }
